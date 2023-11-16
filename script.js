@@ -43,3 +43,30 @@ for (var i = 0; i < listaJogos.length; i ++) {
     //Colocando as imagens dos filmes na página através do JavaScript ao invés do HTML com o document.write()
     //Coletando as imágens através do índice[] delas na Lista/Array dos URLs (listaFilmes)
 }
+
+//Função do botão que remove o filme da tela
+function removerJogo(event) {
+    event.target.parentElement.remove();
+}
+
+//Função para adicionar um jogo a partir de uma URL de img
+function adicionarJogo() {
+    var jogoFavorito = document.getElementById("jogo").value;
+    var elementoListaFilmes = document.getElementById("listaJogos");
+    var item = document.createElement("div");
+    item.classList.add("card-jogo");
+    var imagem = document.createElement("img");
+    var botaoRemover = document.createElement("button");
+    botaoRemover.classList.add("botao-remover-jogo")
+  
+    imagem.src = jogoFavorito;
+    imagem.addEventListener("click", removerJogo);
+    botaoRemover.innerHTML = "Remover";
+    botaoRemover.addEventListener("click", removerJogo);
+  
+    item.appendChild(imagem);
+    item.appendChild(botaoRemover);
+    elementoListaFilmes.appendChild(item);
+  
+    document.getElementById("jogo").value = "";
+}
